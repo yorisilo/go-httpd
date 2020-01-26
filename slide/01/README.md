@@ -239,7 +239,7 @@ TCP ソケットを使った実装で read(2) しなかったら curl に `conne
 read を一切しない
 
 ``` shell
-X / _ /) < curl -w '%{http_code}\n' --http1.0 -4 localhost:8080
+X / _ /) < curl -w '%{http_code}\n' --http1.1 -4 localhost:8080
 Hello World
 curl: (56) Recv failure: Connection reset by peer
 200
@@ -271,7 +271,7 @@ conn.Read(request)
 ```
 
 ``` shell
-X / _ /) < curl -w '%{http_code}\n' --http1.0 -4 localhost:8080
+X / _ /) < curl -w '%{http_code}\n' --http1.1 -4 localhost:8080
 Hello World
 curl: (56) Recv failure: Connection reset by peer
 200
@@ -302,7 +302,7 @@ conn.Read(request)
 ```
 
 ``` shell
-X / _ /) < curl -w '%{http_code}' --http1.0 -4 localhost:8080
+X / _ /) < curl -w '%{http_code}' --http1.1 -4 localhost:8080
 Hello World
 200%
 ```
