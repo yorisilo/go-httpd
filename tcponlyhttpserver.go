@@ -23,7 +23,7 @@ func main() {
 		log.Printf("accept\n")
 
 		go func() {
-			request := make([]byte, 78)
+			request := make([]byte, 1024)
 			conn.Read(request)
 			// http.ReadRequest(bufio.NewReader(conn))
 			conn.Write([]byte("HTTP/1.0 200 OK\r\n\r\nHello World\n"))
