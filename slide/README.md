@@ -6,3 +6,4 @@ golang でアプリケーション層のライブラリは使わずに、 トラ
 - httpd を作成中に、 `conn.Read` せずに `conn.Write([]byte("HTTP/1.0 200 OK\r\n\r\nHello World\n"))` したら、 curl で `curl: (56) Recv failure: Connection reset by peer` 怒られてしまい、その理由を知りたくなった。結果 RFC 7230 を読む羽目になった。
 - ネットワークのこと
 - httpd 作成再び。 では、http の仕様がなんとなく把握できたところで httpd を作っていく。HTTP/0.9 -> HTTP/1.0 -> HTTP/1.1 の仕様に従ってだんだんと httpd を進化させていき、また、効率的な実装を行う。
+
