@@ -1,6 +1,6 @@
 2020-02-08 04:07:04
 
-# TCP/IP プロトコル
+# NIC を探し当てろ！
 - keywords: TCP/IP, layer(application, transport, network, link), ルーティング、 L2スイッチ、 L3スイッチ、ルータ、ARP, NAT, DNS, DHCP, VLAN
 
 ## ３行+αで説明する
@@ -12,10 +12,6 @@
 - まずはとにかく ARP
 
 ## ざっくり TCP/IP
-- [インターネット通信の流れ - Qiita](https://qiita.com/naoki_mochizuki/items/7ee0e01db61e1e7abd62)
-- [令和の今だからこそ地球🌏の裏側までパケットを届けるIPを理解する - Qiita](https://qiita.com/zawawahoge/items/f810238daf02ca9042ce#_reference-b2334a9477a97ceb5f64)
-- [TCP/IP - TCPとは - TCPヘッダ](https://www.infraexpert.com/study/tcpip8.html)
-
 各層でデータの塊的なやつの名前が決まっているっぽい
 
 ![tcp/ip](./img/tcp-ip.png)
@@ -34,6 +30,10 @@
 - ネットワーク層: IP を決める
 - リンク層: MAC を決める
 
+### cf.
+- [インターネット通信の流れ - Qiita](https://qiita.com/naoki_mochizuki/items/7ee0e01db61e1e7abd62)
+- [令和の今だからこそ地球🌏の裏側までパケットを届けるIPを理解する - Qiita](https://qiita.com/zawawahoge/items/f810238daf02ca9042ce#_reference-b2334a9477a97ceb5f64)
+- [TCP/IP - TCPとは - TCPヘッダ](https://www.infraexpert.com/study/tcpip8.html)
 
 ## ネットワークを流れるデータ
 ![](img/data-frame.png)
@@ -42,7 +42,7 @@
 - OSI参照モデルだと L7にあたる
   - アプリケーションが実際に読んだり作成したりするデータを扱う
 - DNS: アプリケーション層とネットワーク層をつなげる役目。 ホスト名とIPアドレスを紐付けること(名前解決)を行う `FQDN(ホスト名+ドメイン名) -> IP`
-  [DNSの仕組みの概要 | ITSakura](https://itsakura.com/network-dns)
+  cf. [DNSの仕組みの概要 | ITSakura](https://itsakura.com/network-dns)
 - DHCP: NIC に IP アドレスを自動で設定するプロトコル
 
 ### メッセージ = HTTP ヘッダー + body
@@ -112,13 +112,6 @@ IPヘッダー
 ![](img/ethernet-frame.png)
 
 ## http 通信を追ってみる(L2,L3を詳しく見る)
-- [ネットワーク入門サイト - 全体の通信の流れ](https://beginners-network.com/nagare.html)
-- [Lesson4：ルーターだってARPを使う，実際の通信の流れを知ろう | 日経 xTECH（クロステック）](https://tech.nikkeibp.co.jp/it/article/COLUMN/20070926/282842/)
-- [ASCII.jp：IPアドレスからMACアドレスを調べるARPはどこまで有効？](https://ascii.jp/elem/000/000/629/629331/)
-- [【図解】ルーティングの流れ ～同一セグメント内通信とデフォルトゲートウェイによる別セグメント間通信 | SEの道標](https://milestone-of-se.nesuke.com/nw-basic/grasp-nw/inner-and-inter-segment/)
-- [3 Minutes Networking](http://www5e.biglobe.ne.jp/aji/3min/index.html)
-- [3 Minutes Networking No.28](http://www5e.biglobe.ne.jp/aji/3min/28.html)
-
 keywords
 
 - ARPテーブル(ARPキャッシュ): IP と MAC アドレスの組のテーブル
@@ -131,7 +124,7 @@ keywords
 - server: http://yorisilo.github.io は port 80 で GET に対して、 HTTP1.1 200 hello を返す
 
 我々が普段意識するのはこんな感じだが、低レイヤでは何が行われているのかを見ていく。
-普段あんまり考えないかもしれないが、 アプリケーション層(http)はもちろん、トランスポート層(yorisilo.github.io)やネットワーク層(:80)は URL のところに表出してる。
+普段あんまり考えないかもしれないが、 アプリケーション層(http)はもちろん、トランスポート層(:80)やネットワーク層(yorisilo.github.io)に必要な要素は URL のところに表出してる。
 
 - ネットワーク通信は主に、２種類の構成でできている。
   - NIC を見つけること。(リンク層+ネットワーク層) <= 今回はこっちのこと中心に話す。
@@ -146,6 +139,14 @@ NIC を見つけたあとで、 ソケット通信を行うのである。
 
 L2, L3 の FAQ
 ![](img/tcpip-L2L3-explain.jpg)
+
+## cf.
+- [ネットワーク入門サイト - 全体の通信の流れ](https://beginners-network.com/nagare.html)
+- [Lesson4：ルーターだってARPを使う，実際の通信の流れを知ろう | 日経 xTECH（クロステック）](https://tech.nikkeibp.co.jp/it/article/COLUMN/20070926/282842/)
+- [ASCII.jp：IPアドレスからMACアドレスを調べるARPはどこまで有効？](https://ascii.jp/elem/000/000/629/629331/)
+- [【図解】ルーティングの流れ ～同一セグメント内通信とデフォルトゲートウェイによる別セグメント間通信 | SEの道標](https://milestone-of-se.nesuke.com/nw-basic/grasp-nw/inner-and-inter-segment/)
+- [3 Minutes Networking](http://www5e.biglobe.ne.jp/aji/3min/index.html)
+- [3 Minutes Networking No.28](http://www5e.biglobe.ne.jp/aji/3min/28.html)
 
 ## まとめ
 これで、あのアレな人にも馬鹿にされずに済むぞ！
