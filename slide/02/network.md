@@ -34,7 +34,7 @@
 - リンク層: MAC を決める
 
 ### cf.
-- [インターネット通信の流れ - Qiita](https://qiita.com/naoki_mochizuki/items/7ee0e01db61e1e7abd62)
+- [インターネット通信の流れ - Qiita](https://qiita.com/naoki_mochizuki/items/7ee0e01db61e1e7abd62) <= 画像はこちらの記事のものを使ってます
 - [令和の今だからこそ地球🌏の裏側までパケットを届けるIPを理解する - Qiita](https://qiita.com/zawawahoge/items/f810238daf02ca9042ce#_reference-b2334a9477a97ceb5f64)
 - [TCP/IP - TCPとは - TCPヘッダ](https://www.infraexpert.com/study/tcpip8.html)
 
@@ -168,4 +168,4 @@ L2, L3 の FAQ
 - WAN: 複数の LAN で構成される複数の異なるネットワークとつながったネットワークのこと
 
 # cf.
-- [図解まるわかり ネットワークのしくみ【PDF版】 ｜ SEshop.com ｜ 翔泳社の通販](https://www.seshop.com/product/detail/22237)
+- [図解まるわかり ネットワークのしくみ【PDF版】 ｜ SEshop.com ｜ 翔泳社の通販](https://www.seshop.com/product/detail/22237) <= 画像はこちらの本のものを使ってます
