@@ -39,6 +39,11 @@
 - [TCP/IP - TCPとは - TCPヘッダ](https://www.infraexpert.com/study/tcpip8.html)
 
 ## ネットワークを流れるデータ
+
+```
+イーサネットヘッダ + IPヘッダ + TCPヘッダ + HTTP ヘッダ + メッセージ + FCS
+```
+
 ![](img/data-frame.png)
 
 ## アプリケーション層
@@ -138,10 +143,10 @@ keywords
 NIC を見つけたあとで、 ソケット通信を行うのである。
 
 ネットワーク通信を追ってみる
-![](img/tcpip-L2L3-ex.jpg)
+![](img/l2l3.jpg)
 
 L2, L3 の FAQ
-![](img/tcpip-L2L3-explain.jpg)
+![](img/l2l3faq.jpg)
 
 ## cf.
 - [ネットワーク入門サイト - 全体の通信の流れ](https://beginners-network.com/nagare.html)
