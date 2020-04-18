@@ -1,7 +1,7 @@
 2020-04-18 02:04:05
 
 # NIC を探し当てろ！
-- keywords: TCP/IP, layer(application, transport, network, link), ルーティング、 L2スイッチ、 L3スイッチ、ルータ、ARP, NAT, DNS, DHCP, VLAN
+- keywords: TCP/IP, layer(application, transport, network, link), ルーティング、L2スイッチ、ルータ、ARP
 
 ここで呼んでる NIC は、イーサネット用のLANポートを備えたカードのみを指しているわけではなく、ネットワークインターフェースを備えたもの(仮想NIC、ネットワークアダプタ、LAN アダプタ、イーサネットアダプタなど)全般を指しています。
 つまり、MACアドレスと、IPアドレスが設定されているやつのことを NIC と呼んでいます。
