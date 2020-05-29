@@ -323,14 +323,11 @@ mac だと `brew install wireshark && brew link wireshark` で tshark のみ入�
 
 tshark で NIC を指定し、そのネットワーク上を流れているデータを確認し TCP/IP の息吹を感じる
 
+TCP の仕様に従って、ちゃんとデータが送られてることを実データで確認する
+[RFC 793 - Transmission Control Protocol](https://tools.ietf.org/html/rfc793)
+
 ### usage
 リアルタイムにパケットを表示する方法
-
-``` shell
-tshark -i lo0 -f "port 8080" # ネットワークインターフェース lo0(ループバックインターフェース) の port 8080 でフィルターしてキャプチャをする
-
-tshark -i lo0 -Y "tcp.port==8080"
-```
 
 `tshark -i <インタフェース> -Y <絞り込みの条件> -n`
 
@@ -340,6 +337,44 @@ tshark -i lo0 -Y "tcp.port==8080"
 - -n: 名前解決をせずに数字のまま出力する
 - -O null,ip,tcp: キャプチャを行う対象のプロトコルをコンマ区切りで指定する。 `tshark -G protocols` によって指定できるプロトコルを調べる事ができる
 - -V: 要約でなく詳細を出力する
+
+``` shell
+$ tshark -i lo0 -f "port 8080" # ネットワークインターフェース lo0(ループバックインターフェース) の port 8080 でフィルターしてキャプチャをする
+
+$ tshark -i lo0 -Y "tcp.port==8080"
+   31  43.528209    127.0.0.1 → 127.0.0.1    TCP 68 62597 → 8080 [SYN] Seq=0 Win=65535 Len=0 MSS=16344 WS=64 TSval=473306499 TSecr=0 SACK_PERM=1
+   32  43.528305    127.0.0.1 → 127.0.0.1    TCP 68 8080 → 62597 [SYN, ACK] Seq=0 Ack=1 Win=65535 Len=0 MSS=16344 WS=64 TSval=473306499 TSecr=473306499 SACK_PERM=1
+   33  43.528316    127.0.0.1 → 127.0.0.1    TCP 56 62597 → 8080 [ACK] Seq=1 Ack=1 Win=408256 Len=0 TSval=473306499 TSecr=473306499
+   34  43.528329    127.0.0.1 → 127.0.0.1    TCP 56 [TCP Window Update] 8080 → 62597 [ACK] Seq=1 Ack=1 Win=408256 Len=0 TSval=473306499 TSecr=473306499
+   35  43.528506    127.0.0.1 → 127.0.0.1    HTTP 134 GET / HTTP/1.1
+   36  43.528523    127.0.0.1 → 127.0.0.1    TCP 56 8080 → 62597 [ACK] Seq=1 Ack=79 Win=408192 Len=0 TSval=473306499 TSecr=473306499
+   37  43.528600    127.0.0.1 → 127.0.0.1    HTTP 183 HTTP/1.1 200 OK  (text/plain)
+   38  43.528616    127.0.0.1 → 127.0.0.1    TCP 56 62597 → 8080 [ACK] Seq=79 Ack=128 Win=408128 Len=0 TSval=473306499 TSecr=473306499   39  43.529172    127.0.0.1 → 127.0.0.1    TCP 56 62597 → 8080 [FIN, ACK] Seq=79 Ack=128 Win=408128 Len=0 TSval=473306500 TSecr=473306499
+   40  43.529206    127.0.0.1 → 127.0.0.1    TCP 56 8080 → 62597 [ACK] Seq=128 Ack=80 Win=408192 Len=0 TSval=473306500 TSecr=473306500   41  43.529306    127.0.0.1 → 127.0.0.1    TCP 56 8080 → 62597 [FIN, ACK] Seq=128 Ack=80 Win=408192 Len=0 TSval=473306500 TSecr=473306500
+   42  43.529325    127.0.0.1 → 127.0.0.1    TCP 56 62597 → 8080 [ACK] Seq=80 Ack=129 Win=408128 Len=0 TSval=473306500 TSecr=473306500
+```
+
+### 3-way handshake によって TCPコネクションを確立する
+- 最初の３つ(31,32,33)で 3 way-handshake を行い通信を確立 https://tools.ietf.org/html/rfc793#section-3.4
+  - 31: クライアントがサーバーへ SYN を送り接続要求を行う
+  - 32: サーバーがクライアントへ ACK を送り接続を受理したことを伝えるとともに、 SYN を送り接続要求を行う
+  - 33: クライアントがサーバーへ ACK を送り接続を受理したことを伝える
+- 34: window update というサーバーからクライアントに向けて、ACK に window sizeを載せて一度に受け取れるデータのサイズを教えている https://tools.ietf.org/html/rfc793#section-1.5
+
+### HTTP リクエスト
+- 35: HTTP GET リクエストがクライアントからサーバーに送られる
+
+### HTTP レスポンス
+- 36: 79バイト分のデータを受け取ったことをACKとともにクライアントに知らせる
+- 37: HTTP OK というレスポンスを返す
+- 38: クライアントがACKを送りレスポンスを受け取ったことをサーバーに知らせる
+
+### TCPコネクションを閉じる
+- リクエストとレスポンスが正常に終了したので、TCPコネクションを閉じる https://tools.ietf.org/html/rfc793#section-3.5
+  - 39: クライアントが FIN ACK を送る
+  - 40: サーバーが ACK を送り FIN を受け取ったことを知らせる
+  - 41: サーバーが  FIN ACK を送る
+  - 42: クライアント ACK を送り FIN を受け取ったことを知らせる
 
 cf.
 - [tsharkコマンドの使い方 - Qiita](https://qiita.com/hana_shin/items/0d997d9d9dd435727edf)
