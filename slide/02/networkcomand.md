@@ -232,6 +232,7 @@ cf.
 - netstat
 - arp
 - route
+
 は centos7 以降では非推奨となっていて、代わりに以下を使うことが推奨されているので注意しよう
 
 - ifconfig	-> ip addr、ip -s link
