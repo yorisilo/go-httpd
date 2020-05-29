@@ -29,9 +29,42 @@
 http で get リクエストを行うと HelloWorld を返すだけの http サーバー
 
 ``` shell
-go get -u github.com/shurcooL/goexec
-goexec 'http.ListenAndServe(":8080", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){io.WriteString(w, "HellWorld\n")}))'
+# go の場合
+$ go get -u github.com/shurcooL/goexec
+$ goexec 'http.ListenAndServe(":8080", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){io.WriteString(w, "HellWorld\n")}))'
+
+# nc コマンドの場合
+while true; do { echo -e 'HTTP/1.1 200 OK\n\nhello'; } | nc -l 8000; [ $? != 0 ] && break; done
 ```
+
+<details>
+<summary>nc コマンドについて</summary>
+トランスポート層の通信を行うコマンド
+
+クライアントとしての使い方
+``` shell
+# 対象ホストに対してポート指定をして、TCPで疎通確認を行う
+nc 対象ホスト(IPアドレス等) ポート番号
+
+# 対象ホストに対してポート指定をして、UDPで疎通確認を行う
+nc -u 対象ホスト(IPアドレス等) ポート番号
+
+# http リクエストなども送れる (httpに限らず、アプリケーションレイヤのプロトコルのルールに従っていればなんでもおｋ)
+echo -en "GET / HTTP/1.1\n\n" | nc 対象ホスト(IPアドレス等) 80
+```
+
+サーバーとしての使い方
+``` shell
+nc -l ポート番号 # TCPのポート番号で待ち受ける
+nc -ul ポート番号 # UDPのポート番号で 待ち受ける
+```
+
+cf.
+- [nc コマンドで簡易HTTPサーバ - sonots:blog](http://blog.livedoor.jp/sonots/archives/34703829.html)
+- [nc(netcat)コマンドで覚えておきたい使い方8個 | 俺的備忘録 〜なんかいろいろ〜](https://orebibou.com/2015/11/ncnetcat%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E8%A6%9A%E3%81%88%E3%81%A6%E3%81%8A%E3%81%8D%E3%81%9F%E3%81%84%E4%BD%BF%E3%81%84%E6%96%B98%E5%80%8B/)
+
+</details>
+
 
 ## netstat
 (トランスポート(tcpとかudp)層の)ネットワークの状態を確かめるコマンド
