@@ -236,9 +236,9 @@ cf.
 は centos7 以降では非推奨となっていて、代わりに以下を使うことが推奨されているので注意しよう
 
 - ifconfig	-> ip addr、ip -s link
+- netstat   -> ss
 - route	    -> ip route
 - arp	    -> ip neigh
-- netstat   -> ss
 
 cf.
 - [CentOS 7 以降では ifconfig、route、arp、netstat が非推奨 - eTuts+ Server Tutorial](https://server.etutsplus.com/centos-7-net-tools-vs-iproute2/)
