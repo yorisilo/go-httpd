@@ -76,6 +76,8 @@ cf.
 - NIC の状態
 などが把握できる
 
+- netstat でネットワークの状態を確かめて、 LISTEN している tcp ソケットを調べよう => http サーバーに割り当てられた ip と port が LISTEN してるかどうかが確認できる
+
 ### usage
 
 ``` shell
@@ -131,6 +133,8 @@ PortやPID、プロセス名がオープンしているファイルディスク�
 
 `netstat -an | grep LISTEN` して、 LISTEN してる PORT を調べて、その PORT が使用しているプロセスを調べるときに使ったりする。
 
+- lsof でポートで使用しているプロセスを調べよう => ポートに割り当てられているプロセスが http サーバーになっているかどうかが確認できる
+
 ### usage
 
 ``` shell
@@ -154,6 +158,8 @@ cf.
 ## ifconfig
 ネットワーク・インターフェース(NIC)のネットワーク状態を確認したり、設定を行うコマンド
 - NIC に紐付いている IP, MAC アドレスなどを確認できる
+
+- ifconfig で NIC に割り当てられている IP や MACアドレスを調べる => http サーバーの IP アドレスに紐づく NIC を確認できる。
 
 ### usage
 
@@ -315,6 +321,8 @@ NIC を指定して、そこを流れるデータを確認できるパケット(
 tshark は wireshark の CUI版
 mac だと `brew install wireshark && brew link wireshark` で tshark のみ入る
 
+- tshark で NIC を指定し、そのネットワーク上を流れているデータを確認し TCP/IP の息吹を感じる
+
 ### usage
 リアルタイムにパケットを表示する方法
 
@@ -330,7 +338,7 @@ tshark -i lo0 -Y "tcp.port==8080"
 - -Y: 絞り込み条件を所定のフォーマットで指定する ex. `tcp.port==8080`
 - -f: 絞り込みをする。こちらは、フォーマットで指定をせず grep のように使う
 - -n: 名前解決をせずに数字のまま出力する
-- -O ip,tcp: キャプチャを行う対象のプロトコルをコンマ区切りで指定する。 `tshark -G protocols` によって指定できるプロトコルを調べる事ができる
+- -O null,ip,tcp: キャプチャを行う対象のプロトコルをコンマ区切りで指定する。 `tshark -G protocols` によって指定できるプロトコルを調べる事ができる
 - -V: 要約でなく詳細を出力する
 
 cf.
