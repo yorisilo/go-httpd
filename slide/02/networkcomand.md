@@ -383,6 +383,11 @@ cf.
 - [Wiresharkを使った通信監視（後編）――コマンドラインベースでのパケットキャプチャ | さくらのナレッジ](https://knowledge.sakura.ad.jp/6311/)
 - [tshark - The Wireshark Network Analyzer 3.2.4](https://www.wireshark.org/docs/man-pages/tshark.html)
 
+## まとめ
+- ネットワークを扱うための基本的なコマンド(netstat, lsof, ifconfig, tcpdump(tshark))を見てきた
+- ネットワーク上のトランスポート層、アプリケーション層の実データのやり取りを追うことで、TCPの息吹を感じた
+  - L2(リンク層),L3(ネットワーク層) のデータも tshark や tcpdump を使って見ることができるので、見てみると良いかもです
+
 ## 参考
 - [ネットワークの基礎 : 51PM](http://51pm.blog.jp/archives/14371688.html)
 - [2015年Webサーバアーキテクチャ序論 - ゆううきブログ](https://blog.yuuk.io/entry/2015-webserver-architecture)
