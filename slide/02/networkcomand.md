@@ -76,7 +76,7 @@ cf.
 - NIC の状態
 などが把握できる
 
-- netstat でネットワークの状態を確かめて、 LISTEN している tcp ソケットを調べよう => http サーバーに割り当てられた ip と port が LISTEN してるかどうかが確認できる
+netstat でネットワークの状態を確かめて、 LISTEN している tcp ソケットを調べよう => http サーバーに割り当てられた ip と port が LISTEN してるかどうかが確認できる
 
 ### usage
 
@@ -104,7 +104,7 @@ tcp4       0      0  *.17500                *.*                    LISTEN
 ...
 ```
 
-ちなみに 8080 ポートは http-alt サービスが対応していることは `/etc/services` で確認できる
+ちなみに 8080 ポートに対して http-alt サービスが対応していることは `/etc/services` で確認できる
 
 <details>
 
@@ -159,7 +159,7 @@ cf.
 ネットワーク・インターフェース(NIC)のネットワーク状態を確認したり、設定を行うコマンド
 - NIC に紐付いている IP, MAC アドレスなどを確認できる
 
-- ifconfig で NIC に割り当てられている IP や MACアドレスを調べる => http サーバーの IP アドレスに紐づく NIC を確認できる。
+ifconfig で NIC に割り当てられている IP や MACアドレスを調べる => http サーバーの IP アドレスに紐づく NIC を確認できる。
 
 ### usage
 
@@ -321,7 +321,7 @@ NIC を指定して、そこを流れるデータを確認できるパケット(
 tshark は wireshark の CUI版
 mac だと `brew install wireshark && brew link wireshark` で tshark のみ入る
 
-- tshark で NIC を指定し、そのネットワーク上を流れているデータを確認し TCP/IP の息吹を感じる
+tshark で NIC を指定し、そのネットワーク上を流れているデータを確認し TCP/IP の息吹を感じる
 
 ### usage
 リアルタイムにパケットを表示する方法
