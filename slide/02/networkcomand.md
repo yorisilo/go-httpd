@@ -1,9 +1,11 @@
-2020-02-08 03:51:31
+2020-05-30 13:47:23
 
 # TCP/IP の息吹を感じよ
 - keywords: netstat, lsof, ifconfig, tcpdump(tshark)
 
 ## この発表について
+- 前の発表を理論編 [go-httpd/network.md at master · yorisilo/go-httpd](https://github.com/yorisilo/go-httpd/blob/master/slide/02/network.md) と位置づけるなら、こっちは実践編みたいな感じ。コマンドを一緒に打ちながら、ハンズオン形式で確認する。
+
 ### 書いた人
 - ネットワークに詳しくないアプリケーションエンジニア
   - ネットワークキャプチャとかあんまり知らんなあって感じ
