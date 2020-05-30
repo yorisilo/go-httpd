@@ -398,3 +398,4 @@ cf.
 - [Working with TCP Sockets 読書メモ 第6章 はじめてのクライアント／サーバ – Strings of Life](https://ryo511.info/archives/3809)
 - [TCP/IP ソケットプログラミングの基礎を集中学習! Working with TCP sockets を読んでる | Futurismo](https://futurismo.biz/archives/2572)
 - [「Working with TCP Sockets」を読んだ - Fire Engine](https://blog.tsurubee.tech/entry/2018/07/25/152514)qq
+- [TCPについて学ぶ - HTTP通信の流れを見てみる](https://www.mas9612.net/posts/dive-into-tcp-http/)
