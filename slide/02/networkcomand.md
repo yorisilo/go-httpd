@@ -385,6 +385,11 @@ Capturing on 'Loopback: lo0'
   - 11: サーバーが  FIN ACK を送る
   - 12: クライアント ACK を送り FIN を受け取ったことを知らせる
 
+### ack と seq について
+> 受信したシーケンス番号に + (受信データ長) したものを ACK 番号に入れて返す
+> 受信した ACK 番号を次のシーケンス番号とする
+[TCP のシーケンス番号と ACK 番号の増え方 - Qiita](https://qiita.com/chgzm/items/86dba86d183f613d1867)
+
 cf.
 - [tsharkコマンドの使い方 - Qiita](https://qiita.com/hana_shin/items/0d997d9d9dd435727edf)
 - [Wiresharkでパケットキャプチャしてみた - yagisukeのWebなブログ](http://yagisuke.hatenadiary.com/entry/2017/03/11/213513)
