@@ -333,6 +333,10 @@ Capturing on 'Loopback: lo0'
 - read しなかった場合:
   - server: [RST(確立された接続を一方的に切断するパケット), ACK(close)] を送る
 
+# window 制御
+
+https://www.infraexpert.com/study/tcpip11.html
+
 ---
 
 # 小ネタ: tshark はいいぞ

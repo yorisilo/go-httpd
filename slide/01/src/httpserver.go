@@ -5,6 +5,12 @@ import (
 	"net/http"
 )
 
+type Fuga struct {
+	hoge int64
+	fuga int64
+	str  string
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	// dump, err := httputil.DumpRequest(r, true)
 	// if err != nil {

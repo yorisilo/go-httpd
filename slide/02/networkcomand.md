@@ -195,12 +195,12 @@ cf.
 - [ifconfigの出力結果に書いてあること - Qiita](https://qiita.com/TD3P/items/aff8db72530c6baa11b2)
 - [ifconfig(8) FreeBSDドキュメントJMan](https://kaworu.jpn.org/doc/FreeBSD/jman/man8/ifconfig.8.php)
 
-### ネットワーク・インターフェース(NIC)
+### ネットワーク・インターフェース(NI)
 - ネットワーク接続に必要なインターフェース
   - AWS上でENI(Elastic Network Insterface)に値するもの。
 - 物理的なハードウェアでは、NIC(ネットワークインターフェースカード)というカード型の拡張装置を用いる。
   - LAN ケーブルを差し込むハードウェア。アレが物理版の NIC。 LAN カードとかネットワークカードと呼ばれたりもする。
-- IPアドレスはNICに設定される
+- IPアドレスはNIに設定される
 - IPアドレスは「ホスト」に対してではなく、NIC に対して割り当てられる。
 - 通常は1NIC-1IPアドレスになるが、1つのNICに複数のIPアドレスを割り当てることが可能だったり、複数のNICを備える機器（ルータなど）が存在する。
 
@@ -210,8 +210,8 @@ cf.
 - [IPアドレスの基礎知識 - Qiita](https://qiita.com/mogulla3/items/efb4c9328d82d24d98e6#1-3-ip%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%81%AFnic%E3%81%AB%E8%A8%AD%E5%AE%9A%E3%81%95%E3%82%8C%E3%82%8B)
 
 #### NIC の仕事内容
-- NIC に MAC アドレスが紐付いている
-- この MAC アドレスで NIC を識別している
+- NIC に対して、 1つの MAC アドレスがあると思って良い
+- NIC に対して、複数の IP を紐付けることも可能
 - NIC がイーサネットや無線LANなどの送受信を行っている
 
 > イーサーネット上を流れる電気信号（０と１が無限に流れているという意味でビットストリームと言います）を常に受信し続け、
